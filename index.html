@@ -167,6 +167,39 @@
             color: var(--primary);
         }
 
+        /* Nova seção do Autor */
+        .author-section {
+            margin-top: 25px;
+            padding-top: 15px;
+            border-top: 2px dashed #e5e7eb;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #4b5563;
+        }
+
+        .author-section .dev-title {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #9ca3af;
+            margin-bottom: 4px;
+            font-weight: bold;
+        }
+
+        .author-section h3 {
+            margin: 0 0 6px 0;
+            color: var(--primary);
+            font-size: 1rem;
+        }
+
+        .author-tags {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            align-items: center;
+            font-weight: 500;
+        }
+
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(5px); }
             to { opacity: 1; transform: translateY(0); }
@@ -192,39 +225,43 @@
     </div>
     <button onclick="calcularDiagnostico()">Analisar Saúde do Caixa</button>
 
-    <!-- CARD RESULTADO PADRÃO -->
     <div id="resultCard" class="card card-success">
         <h3>✅ Desempenho Estável</h3>
-        <p>Seu <strong>RevPAR</strong> (Receita por Quarto Disponível) atual é de <strong>R$ <span id="revparValue">0.00</span></strong>.</p>
+        <p>Seu <strong>RevPAR</strong> atual é de <strong>R$ <span id="revparValue">0.00</span></strong>.</p>
         <p>A taxa de ocupação está em patamares seguros. Continue mantendo o controle rigoroso sobre o fluxo de caixa diário.</p>
     </div>
 
-    <!-- CARD ALERTA DE SAZONALIDADE (BAIXA OCUPAÇÃO) -->
     <div id="alertCard" class="card card-danger">
         <h3>⚠️ Alerta Crítico: Sazonalidade Ativa!</h3>
         <p>Seu <strong>RevPAR</strong> atual é de <strong>R$ <span id="revparAlertValue">0.00</span></strong> com taxa de ocupação abaixo de 50%.</p>
         <p><strong>Diretrizes de Sobrevivência (SEBRAE):</strong></p>
         <ul>
-            <li><strong>Blindagem do Capital de Giro:</strong> Não utilize o faturamento de reservas futuras para pagar despesas fixas correntes (Armadilha da Falsa Liquidez).</li>
-            <li><strong>Gestão de Meios de Pagamento:</strong> Estimule recebimentos via Pix (taxa zero/liquidez imediata) e evite antecipações recorrentes de cartão de crédito.</li>
-            <li><strong>Corte de Custos Variáveis:</strong> Adapte a estrutura operacional (lavanderia, escalas, insumos do café) estritamente ao volume real de hóspedes.</li>
+            <li><strong>Blindagem do Capital de Giro:</strong> Não utilize o faturamento de reservas futuras para pagar despesas fixas correntes.</li>
+            <li><strong>Gestão de Meios de Pagamento:</strong> Estimule recebimentos via Pix (taxa zero/liquidez imediata) e evite antecipações de cartão de crédito.</li>
+            <li><strong>Corte de Custos Variáveis:</strong> Adapte a estrutura operacional estritamente ao volume real de hóspedes.</li>
         </ul>
     </div>
 
-    <!-- GLOSSÁRIO DE CONSULTA RÁPIDA -->
     <div class="glossary">
         <h2>🗂️ Dicionário do Gestor</h2>
         <div class="glossary-item">
             <strong>RevPAR:</strong> Métrica global que mede a receita gerada por cada quarto disponível no hotel, combinando preço e ocupação.
         </div>
         <div class="glossary-item">
-            <strong>Capital de Giro:</strong> Dinheiro de reserva essencial para pagar salários, fornecedores e contas durante os meses de movimento fraco.
+            <strong>Capital de Giro:</strong> Dinheiro de reserva essencial para pagar salários e contas durante os meses de movimento fraco.
         </div>
         <div class="glossary-item">
-            <strong>Regime de Caixa:</strong> Registro financeiro focado no momento exato em que o dinheiro entra ou sai fisicamente da conta da pousada.
+            <strong>Regime de Caixa:</strong> Registro financeiro focado no momento exato em que o dinheiro entra ou sai fisicamente da conta.
         </div>
-        <div class="glossary-item">
-            <strong>Antecipação de Recebíveis:</strong> Operação onde se adianta o dinheiro de cartões parcelados pagando juros punitivos que corroem o lucro real.
+    </div>
+
+    <div class="author-section">
+        <div class="dev-title">Desenvolvedor do Software</div>
+        <h3>Breno dos Santos Rodrigues</h3>
+        <div class="author-tags">
+            <span>🎓 Mestre em Turismo (UFPR)</span>
+            <span>🏨 MBA em Gestão Hoteleira e Hospitalar</span>
+            <span>💼 Bacharel em Turismo</span>
         </div>
     </div>
 </div>
@@ -242,7 +279,6 @@
             return;
         }
 
-        // Cálculo do RevPAR
         const revpar = adr * (occupancy / 100);
 
         if (occupancy < 50) {
